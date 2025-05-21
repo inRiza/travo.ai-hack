@@ -1,26 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: white;
+  color: #212121;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Travel Website Font Classes */
+.font-travel-heading {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-travel-body {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Font weights for Plus Jakarta Sans */
+.font-travel-heading-extra-light {
+  font-weight: 200;
+}
+
+.font-travel-heading-light {
+  font-weight: 300;
+}
+
+.font-travel-heading-regular {
+  font-weight: 400;
+}
+
+.font-travel-heading-medium {
+  font-weight: 500;
+}
+
+.font-travel-heading-semibold {
+  font-weight: 600;
+}
+
+.font-travel-heading-bold {
+  font-weight: 700;
+}
+
+.font-travel-heading-extrabold {
+  font-weight: 800;
+}
+
+/* Font weights for Outfit */
+.font-travel-body-thin {
+  font-weight: 100;
+}
+
+.font-travel-body-extra-light {
+  font-weight: 200;
+}
+
+.font-travel-body-light {
+  font-weight: 300;
+}
+
+.font-travel-body-regular {
+  font-weight: 400;
+}
+
+.font-travel-body-medium {
+  font-weight: 500;
+}
+
+.font-travel-body-semibold {
+  font-weight: 600;
+}
+
+.font-travel-body-bold {
+  font-weight: 700;
+}
+
+.font-travel-body-extrabold {
+  font-weight: 800;
+}
+
+.font-travel-body-black {
+  font-weight: 900;
 }
