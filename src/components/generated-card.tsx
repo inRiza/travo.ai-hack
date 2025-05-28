@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 
 interface RecommendationCardProps {
     recommendation: {
@@ -7,31 +8,105 @@ interface RecommendationCardProps {
       budgetRange: string;
       localTips: string[];
       ranking: number;
+      imageUrl?: string;
+      imageAttribution?: {
+        photographer: string;
+        photographerUrl: string;
+      };
     };
+    index: number;
   }
 
-export default function RecommendationCard({ recommendation }: RecommendationCardProps) {
+export default function RecommendationCard({ recommendation, index }: RecommendationCardProps) {
     return (
-      <div className="p-6 rounded-xl shadow-[-5px_7px_66px_-4px_#00000024]">
-        <h3 className="font-travel-heading text-xl font-bold">{recommendation.location}</h3>
-        <p className="font-travel-body text-gray-600">Best time to visit: {recommendation.bestTimeToVisit}</p>
-        <div className="mt-4">
-          <h4 className="font-travel-body font-semibold">Key Attractions:</h4>
-          <ul className="list-disc list-inside">
+      <motion.div 
+        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{
+          duration: 0.4,
+          delay: index * 0.1,
+          ease: [0.21, 0.47, 0.32, 0.98]
+        }}
+        className="p-6 rounded-xl bg-gradient-card shadow-custom hover:shadow-lg transition-shadow duration-300"
+      >
+        {recommendation.imageUrl && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 + 0.2 }}
+            className="relative w-full h-48 mb-4 rounded-lg overflow-hidden"
+          >
+            <img 
+              src={recommendation.imageUrl} 
+              alt={recommendation.location}
+              className="w-full h-full object-cover"
+            />
+            {recommendation.imageAttribution && (
+              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-2">
+                Photo by{' '}
+                <a 
+                  href={recommendation.imageAttribution.photographerUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="underline hover:text-gray-300"
+                >
+                  {recommendation.imageAttribution.photographer}
+                </a>
+                {' '}on Pexels
+              </div>
+            )}
+          </motion.div>
+        )}
+        <motion.h3 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 + 0.3 }}
+          className="font-travel-heading text-xl font-bold text-primary"
+        >
+          {recommendation.location}
+        </motion.h3>
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 + 0.4 }}
+          className="font-travel-body text-secondary"
+        >
+          Best time to visit: {recommendation.bestTimeToVisit}
+        </motion.p>
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 + 0.5 }}
+          className="mt-4"
+        >
+          <h4 className="font-travel-body font-semibold text-primary">Key Attractions:</h4>
+          <ul className="list-disc list-inside text-secondary">
             {recommendation.keyAttractions.map((attraction, index) => (
               <li key={index}>{attraction}</li>
             ))}
           </ul>
-        </div>
-        <p className="mt-2">Budget: {recommendation.budgetRange}</p>
-        <div className="mt-4">
-          <h4 className="font-semibold">Local Tips:</h4>
-          <ul className="list-disc list-inside">
+        </motion.div>
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 + 0.6 }}
+          className="mt-2 text-secondary"
+        >
+          Budget: {recommendation.budgetRange}
+        </motion.p>
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 + 0.7 }}
+          className="mt-4"
+        >
+          <h4 className="font-semibold text-primary">Local Tips:</h4>
+          <ul className="list-disc list-inside text-secondary">
             {recommendation.localTips.map((tip, index) => (
               <li key={index}>{tip}</li>
             ))}
           </ul>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     );
   }
