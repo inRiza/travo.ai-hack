@@ -20,20 +20,27 @@ interface RecommendationCardProps {
 export default function RecommendationCard({ recommendation, index }: RecommendationCardProps) {
     return (
       <motion.div 
-        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+        initial={{ opacity: 0, y: 50, scale: 0.8 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{
-          duration: 0.4,
-          delay: index * 0.1,
-          ease: [0.21, 0.47, 0.32, 0.98]
+          type: "spring",
+          stiffness: 100,
+          damping: 15,
+          mass: 1,
+          delay: index * 0.15
         }}
         className="p-6 rounded-xl bg-gradient-card shadow-custom hover:shadow-lg transition-shadow duration-300"
       >
         {recommendation.imageUrl && (
           <motion.div 
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 + 0.2 }}
+            transition={{ 
+              type: "spring",
+              stiffness: 100,
+              damping: 15,
+              delay: index * 0.15 + 0.1 
+            }}
             className="relative w-full h-48 mb-4 rounded-lg overflow-hidden"
           >
             <img 
@@ -58,25 +65,40 @@ export default function RecommendationCard({ recommendation, index }: Recommenda
           </motion.div>
         )}
         <motion.h3 
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 + 0.3 }}
+          transition={{ 
+            type: "spring",
+            stiffness: 100,
+            damping: 15,
+            delay: index * 0.15 + 0.2 
+          }}
           className="font-travel-heading text-xl font-bold text-primary"
         >
           {recommendation.location}
         </motion.h3>
         <motion.p 
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 + 0.4 }}
+          transition={{ 
+            type: "spring",
+            stiffness: 100,
+            damping: 15,
+            delay: index * 0.15 + 0.3 
+          }}
           className="font-travel-body text-secondary"
         >
           Best time to visit: {recommendation.bestTimeToVisit}
         </motion.p>
         <motion.div 
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 + 0.5 }}
+          transition={{ 
+            type: "spring",
+            stiffness: 100,
+            damping: 15,
+            delay: index * 0.15 + 0.4 
+          }}
           className="mt-4"
         >
           <h4 className="font-travel-body font-semibold text-primary">Key Attractions:</h4>
@@ -87,17 +109,27 @@ export default function RecommendationCard({ recommendation, index }: Recommenda
           </ul>
         </motion.div>
         <motion.p 
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 + 0.6 }}
+          transition={{ 
+            type: "spring",
+            stiffness: 100,
+            damping: 15,
+            delay: index * 0.15 + 0.5 
+          }}
           className="mt-2 text-secondary"
         >
           Budget: {recommendation.budgetRange}
         </motion.p>
         <motion.div 
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 + 0.7 }}
+          transition={{ 
+            type: "spring",
+            stiffness: 100,
+            damping: 15,
+            delay: index * 0.15 + 0.6 
+          }}
           className="mt-4"
         >
           <h4 className="font-semibold text-primary">Local Tips:</h4>

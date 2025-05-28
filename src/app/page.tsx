@@ -5,7 +5,7 @@ import Filter from '../components/filter'
 import RecommendationCard from '../components/generated-card'
 import { AttentionButton } from '../components/attention'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 interface TravelRecommendation {
   location: string;
@@ -29,6 +29,7 @@ const LandingPage = () => {
     visible: {
       opacity: 1,
       transition: {
+        when: "beforeChildren",
         staggerChildren: 0.2,
         delayChildren: 0.3
       }
@@ -85,15 +86,17 @@ const LandingPage = () => {
           variants={itemVariants}
           className='mt-22 mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl px-4'
         >
-          {recommendations && recommendations.length > 0 ? (
-            recommendations.map((recommendation, index) => (
-              <RecommendationCard 
-                key={index} 
-                recommendation={recommendation} 
-                index={index}
-              />
-            ))
-          ) : '' }
+          <AnimatePresence mode="wait">
+            {recommendations && recommendations.length > 0 && (
+              recommendations.map((recommendation, index) => (
+                <RecommendationCard 
+                  key={recommendation.location + index} 
+                  recommendation={recommendation} 
+                  index={index}
+                />
+              ))
+            )}
+          </AnimatePresence>
         </motion.div>
       </div>
       <AttentionButton/>
